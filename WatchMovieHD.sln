@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{46DED99D-3C79-4882-A115-54676E1B03D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchMovie", "WatchMovie\WatchMovie.csproj", "{882CA39B-9EC2-4B9E-85E7-5DE9CC7698F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46DED99D-3C79-4882-A115-54676E1B03D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46DED99D-3C79-4882-A115-54676E1B03D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46DED99D-3C79-4882-A115-54676E1B03D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46DED99D-3C79-4882-A115-54676E1B03D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{882CA39B-9EC2-4B9E-85E7-5DE9CC7698F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{882CA39B-9EC2-4B9E-85E7-5DE9CC7698F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{882CA39B-9EC2-4B9E-85E7-5DE9CC7698F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{882CA39B-9EC2-4B9E-85E7-5DE9CC7698F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA267E8C-F820-4335-BCD8-B435B0536F0C}
+	EndGlobalSection
+EndGlobal
