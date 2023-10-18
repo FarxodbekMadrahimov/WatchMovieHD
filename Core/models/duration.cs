@@ -14,6 +14,6 @@ namespace Core.models
         public int? season { get; set; }
         public int? episode { get; set; }
 
-        ICollection<film> films { get; set; }
+        ICollection<Film> films { get; set; }
     }
 }

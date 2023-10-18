@@ -13,12 +13,14 @@ namespace Core.models
     {
         [Key]
         public int Id {  get; set; }
+        [ForeignKey(nameof(Film))]
         public int FilmId { get; set; }
+        [ForeignKey(nameof(Users))]
         public int userid { get; set; }
 
-        public film film { get; set; }
+        public Film Film { get; set; }
 
-        public Users users { get; set; }
+        public Users Users { get; set; }
 
 
     }

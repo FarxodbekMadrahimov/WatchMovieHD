@@ -37,6 +37,7 @@
             label3 = new Label();
             button1 = new Button();
             pictureBox1 = new PictureBox();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -83,7 +84,7 @@
             textBox1.Location = new Point(62, 125);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "UserName or email";
+            textBox1.PlaceholderText = "UserName";
             textBox1.Size = new Size(385, 53);
             textBox1.TabIndex = 5;
             textBox1.TextChanged += textBox1_TextChanged;
@@ -133,12 +134,24 @@
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Red;
+            label4.Location = new Point(112, 274);
+            label4.Name = "label4";
+            label4.Size = new Size(267, 25);
+            label4.TabIndex = 13;
+            label4.Text = "username or password not valid";
+            label4.Visible = false;
+            // 
             // login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSlateGray;
             ClientSize = new Size(509, 450);
+            Controls.Add(label4);
             Controls.Add(pictureBox1);
             Controls.Add(button2);
             Controls.Add(label3);
@@ -150,6 +163,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "login";
             Text = "Form1";
+            Load += login_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -165,5 +179,6 @@
         private Label label3;
         private Button button1;
         private PictureBox pictureBox1;
+        private Label label4;
     }
 }

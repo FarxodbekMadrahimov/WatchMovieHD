@@ -9,7 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Core.Enum.genre;
+using Core.data;
+
+
 
 namespace WatchMovie
 {
@@ -19,11 +21,15 @@ namespace WatchMovie
         public homepage()
         {
             InitializeComponent();
-            comboBox1.DataSource = Enum.GetValues(typeof(genre));
-            comboBox2.DataSource = Enum.GetValues(typeof(movies));
 
         }
+        public string userName { get; set; }
+        public homepage(string userName)
+        {
+            InitializeComponent();
+            this.userName = userName;
 
+        }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -82,12 +88,6 @@ namespace WatchMovie
 
         private void genreBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-            comboBox1.BeginUpdate();
-            foreach (var genres in Enum.GetNames(typeof(genre)))
-            {
-                comboBox1.Items.Add(genres);
-            }
-            comboBox1.EndUpdate();
 
 
         }
@@ -108,7 +108,100 @@ namespace WatchMovie
         {
             likedMovies likedMovies = new likedMovies();
             Hide();
-            likedMovies.Show();       
+            likedMovies.Show();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var db = new WatchMovieHD();
+
+            var res = db.Films.FirstOrDefault(film => film.Name == textBox1.Text);
+
+            if (res == null)
+            {
+
+                textBox1.Text = "movie not found";
+
+            }
+            else
+            {
+                var AllRows = db.Films.Where(f => f.Name == textBox1.Text).ToList();
+
+                dataGridView1.DataSource = AllRows;
+
+                using (WatchMovieHD contexts = new WatchMovieHD())
+                {
+                    Viewedfilms ViewFilms = new Viewedfilms();
+
+                    var movie = textBox1.Text;
+
+                    var resultMovie = contexts.Films.FirstOrDefault(x => x.Name == movie);
+
+                    var resultUser = contexts.User.FirstOrDefault(x => x.UserName == userName);
+
+                    ViewFilms.userid = resultUser.Id;
+
+                    ViewFilms.FilmId = resultMovie.Id;
+
+                    contexts.Viewedfilms.Add(ViewFilms);
+                    contexts.SaveChanges();
+                }
+
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            //var db = new WatchMovieHD();
+            //var AllRows = db.Films.Where(f => f.Genre == textBox1.Text).ToList();
+
+
+            sortedmovies sortedmovies = new sortedmovies();
+            Hide();
+            sortedmovies.Show();
+
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SortedByType sortedByType = new SortedByType();
+            Hide();
+            sortedByType.Show();
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                using (WatchMovieHD contexts = new WatchMovieHD())
+                {
+                    likedFilms likedFilms = new likedFilms();
+
+                    var movie = textBox1.Text;
+
+                    var resultMovie = contexts.Films.FirstOrDefault(x => x.Name == movie);
+
+                    var resultUser = contexts.User.FirstOrDefault(x => x.UserName == userName);
+
+                    likedFilms.userid = resultUser.Id;
+
+                    likedFilms.FilmId = resultMovie.Id;
+
+                    contexts.LikedFilms.Add(likedFilms);
+                    contexts.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("you havent choosed movie");
+            }
         }
     }
 }

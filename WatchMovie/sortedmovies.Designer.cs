@@ -30,8 +30,12 @@
         {
             pictureBox1 = new PictureBox();
             label1 = new Label();
-            label2 = new Label();
+            dataGridView1 = new DataGridView();
+            comboBox1 = new ComboBox();
+            button1 = new Button();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -53,16 +57,45 @@
             label1.TabIndex = 2;
             label1.Text = "Genre : ";
             // 
-            // label2
+            // dataGridView1
             // 
-            label2.BackColor = SystemColors.ActiveCaptionText;
-            label2.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.ForeColor = Color.CornflowerBlue;
-            label2.Location = new Point(154, 130);
-            label2.Name = "label2";
-            label2.Size = new Size(197, 68);
-            label2.TabIndex = 3;
-            label2.Text = "genre Name";
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(31, 324);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.RowTemplate.Height = 33;
+            dataGridView1.Size = new Size(1433, 451);
+            dataGridView1.TabIndex = 4;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(130, 136);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(182, 33);
+            comboBox1.TabIndex = 5;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(335, 136);
+            button1.Name = "button1";
+            button1.Size = new Size(112, 34);
+            button1.TabIndex = 6;
+            button1.Text = "search";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(232, 844);
+            button2.Name = "button2";
+            button2.Size = new Size(112, 34);
+            button2.TabIndex = 7;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // sortedmovies
             // 
@@ -70,13 +103,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(1892, 1044);
-            Controls.Add(label2);
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Controls.Add(comboBox1);
+            Controls.Add(dataGridView1);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Name = "sortedmovies";
             Text = "sortedmovies";
             Load += sortedmovies_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -84,6 +121,9 @@
 
         private PictureBox pictureBox1;
         private Label label1;
-        private Label label2;
+        private DataGridView dataGridView1;
+        private ComboBox comboBox1;
+        private Button button1;
+        private Button button2;
     }
 }

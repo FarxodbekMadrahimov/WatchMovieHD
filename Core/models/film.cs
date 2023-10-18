@@ -1,4 +1,5 @@
 ﻿using Core.Enum;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,25 +10,26 @@ using System.Threading.Tasks;
 
 namespace Core.models
 {
-    public class film : Movies
+    public class Film 
     {
-        public int  FilmId { get; set; }
+        [Key]
+        public int  Id { get; set; }
 
-        public string name { get; set; }
-        [NotMapped]
-        public genre genre { get; set; }
-        public int year { get; set; }
-        public string producer { get; set; }
-        public string country { get; set; }
-        public int durationId { get; set; }
+        public string Name { get; set; }
+        
+        public string Genre { get; set; }
+        public string Year { get; set; }
+        public string Producer { get; set; }
+        public string Country { get; set; }
+        public string Duration { get; set; }
+        public string? Achivement { get; set; }
+        public string Type { get; set; }
 
-        public movies type { get; set; } 
 
-        public duration duration { get; set; }
 
-        public ICollection<likedFilms> likedFilms { get; set;}
+        public ICollection<likedFilms> likedFilms { get; set; }
 
-        public ICollection<Viewedfilms> viewedFilms { get; set;}
+        public ICollection<Viewedfilms> viewedFilms { get; set; }
 
     }
 }

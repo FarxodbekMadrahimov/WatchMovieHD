@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Core.Migrations
+namespace WatchMovie.Migrations
 {
     [DbContext(typeof(WatchMovieHD))]
-    [Migration("20230728103209_hello")]
-    partial class hello
+    [Migration("20230801070249_ee")]
+    partial class ee
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,6 +65,8 @@ namespace Core.Migrations
 
                     b.HasKey("AchivementsId");
 
+                    b.HasIndex("AchivementId");
+
                     b.ToTable("Achivements");
                 });
 
@@ -81,6 +83,10 @@ namespace Core.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -156,15 +162,7 @@ namespace Core.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FilmId"));
 
-                    b.Property<string>("achivements")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("country")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("duration")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -186,6 +184,8 @@ namespace Core.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("FilmId");
+
+                    b.HasIndex("durationId");
 
                     b.ToTable("films");
                 });
@@ -216,6 +216,17 @@ namespace Core.Migrations
                     b.ToTable("LikedFilms");
                 });
 
+            modelBuilder.Entity("Core.models.Achivements", b =>
+                {
+                    b.HasOne("Core.models.Achivement", "Achivement")
+                        .WithMany()
+                        .HasForeignKey("AchivementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Achivement");
+                });
+
             modelBuilder.Entity("Core.models.Viewedfilms", b =>
                 {
                     b.HasOne("Core.models.film", "film")
@@ -233,6 +244,17 @@ namespace Core.Migrations
                     b.Navigation("film");
 
                     b.Navigation("users");
+                });
+
+            modelBuilder.Entity("Core.models.film", b =>
+                {
+                    b.HasOne("Core.models.duration", "duration")
+                        .WithMany()
+                        .HasForeignKey("durationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("duration");
                 });
 
             modelBuilder.Entity("Core.models.likedFilms", b =>

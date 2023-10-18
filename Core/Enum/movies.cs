@@ -9,7 +9,7 @@ namespace Core.Enum
     public enum movies
     {
         movie,
-        film,
+        series,
         Cartoon,
         anime
     }

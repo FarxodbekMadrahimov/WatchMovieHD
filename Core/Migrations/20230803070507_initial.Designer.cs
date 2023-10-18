@@ -2,6 +2,7 @@
 using Core.data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Core.Migrations
 {
     [DbContext(typeof(WatchMovieHD))]
-    partial class WatchMovieHDModelSnapshot : ModelSnapshot
+    [Migration("20230803070507_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,12 +33,14 @@ namespace Core.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("FilmId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -66,30 +71,6 @@ namespace Core.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Core.models.Achivements", b =>
-                {
-                    b.Property<int>("AchivementsId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("AchivementsId"));
-
-                    b.Property<int>("AchivementId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("FilmId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("year")
-                        .HasColumnType("integer");
-
-                    b.HasKey("AchivementsId");
-
-                    b.HasIndex("AchivementId");
-
-                    b.ToTable("achivments");
-                });
-
             modelBuilder.Entity("Core.models.Film", b =>
                 {
                     b.Property<int>("Id")
@@ -98,28 +79,32 @@ namespace Core.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Achivement")
-                        .HasColumnType("text");
-
                     b.Property<string>("Country")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Duration")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Genre")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Producer")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Type")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Year")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -171,18 +156,23 @@ namespace Core.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("email")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("password")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -221,6 +211,9 @@ namespace Core.Migrations
                     b.Property<int>("FilmId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("UsersId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("userid")
                         .HasColumnType("integer");
 
@@ -228,7 +221,7 @@ namespace Core.Migrations
 
                     b.HasIndex("FilmId");
 
-                    b.HasIndex("userid");
+                    b.HasIndex("UsersId");
 
                     b.ToTable("Viewedfilms");
                 });
@@ -256,17 +249,6 @@ namespace Core.Migrations
                     b.ToTable("LikedFilms");
                 });
 
-            modelBuilder.Entity("Core.models.Achivements", b =>
-                {
-                    b.HasOne("Core.models.Achivement", "Achivement")
-                        .WithMany()
-                        .HasForeignKey("AchivementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Achivement");
-                });
-
             modelBuilder.Entity("Core.models.Viewedfilms", b =>
                 {
                     b.HasOne("Core.models.Film", "Film")
@@ -277,7 +259,7 @@ namespace Core.Migrations
 
                     b.HasOne("Core.models.Users", "Users")
                         .WithMany("viewedFilms")
-                        .HasForeignKey("userid")
+                        .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

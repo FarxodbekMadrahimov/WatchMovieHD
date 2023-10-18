@@ -34,7 +34,7 @@
             dataGridView1 = new DataGridView();
             pictureBox3 = new PictureBox();
             pictureBox4 = new PictureBox();
-            panel1 = new Panel();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -74,12 +74,13 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(31, 249);
+            dataGridView1.Location = new Point(33, 249);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(360, 225);
+            dataGridView1.Size = new Size(843, 271);
             dataGridView1.TabIndex = 3;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // pictureBox3
             // 
@@ -100,12 +101,15 @@
             pictureBox4.TabIndex = 6;
             pictureBox4.TabStop = false;
             // 
-            // panel1
+            // button1
             // 
-            panel1.Location = new Point(526, 249);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(300, 150);
-            panel1.TabIndex = 7;
+            button1.Location = new Point(907, 249);
+            button1.Name = "button1";
+            button1.Size = new Size(112, 34);
+            button1.TabIndex = 7;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // filmspage
             // 
@@ -113,7 +117,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(1895, 1050);
-            Controls.Add(panel1);
+            Controls.Add(button1);
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox3);
             Controls.Add(dataGridView1);
@@ -138,6 +142,6 @@
         private DataGridView dataGridView1;
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
-        private Panel panel1;
+        private Button button1;
     }
 }

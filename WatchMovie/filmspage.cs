@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Core.data;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -47,6 +49,22 @@ namespace WatchMovie
             login login = new login();
             login.Show();
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var db = new WatchMovieHD();
+
+
+            var AllRows = db.Viewedfilms.Include(x => x.Film);
+            dataGridView1.DataSource = AllRows;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            homepage homepage = new homepage();
+            Hide();
+            homepage.Show();
         }
     }
 }
